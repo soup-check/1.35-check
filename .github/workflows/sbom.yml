@@ -1,0 +1,30 @@
+name: Generate SBOM
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  generate-sbom:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Install CycloneDX CLI
+        run: |
+          curl -s https://cyclonedx.org/install.sh | sh
+
+      - name: Generate SBOM
+        run: |
+          cyclonedx-npm --output-format json --output-file sbom.json
+
+      - name: Upload SBOM as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: sbom
+          path: sbom.json
