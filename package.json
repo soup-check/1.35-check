@@ -81,7 +81,7 @@
     "cryptography": "44.0.1",
     "custom-activity-on-crash": "2.4.0",
     "dagger": 2.41,
-    "dayjs": "1.11.8",
+    "dayjs": "1.11.13",
     "deepdiff": "8.0.1",
     "detekt-cli": "1.20.0",
     "diff-match-patch": "1.0.5",
