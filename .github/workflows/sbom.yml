@@ -2,7 +2,7 @@ name: Generate SBOM
 
 on:
   schedule:
-    - cron: '0 6 1 * *'  # At 06:00 on the 1st of every month
+    - cron: '0 6 1 * *'  # Monthly on the 1st at 06:00 UTC
   workflow_dispatch:
   push:
     branches:
@@ -18,17 +18,19 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
       - name: Install CycloneDX CLI
-        run: |
-          curl -s https://cyclonedx.org/install.sh | sh
+        run: npm install -g @cyclonedx/cyclonedx-npm
 
       - name: Generate SBOM (JSON)
-        run: |
-          cyclonedx-npm --output-format json --output-file sbom.json
+        run: cyclonedx-npm --output-format json --output-file sbom.json
 
       - name: Generate SBOM (XML)
-        run: |
-          cyclonedx-npm --output-format xml --output-file sbom.xml
+        run: cyclonedx-npm --output-format xml --output-file sbom.xml
 
       - name: Upload SBOM artifacts
         uses: actions/upload-artifact@v4
@@ -37,3 +39,4 @@ jobs:
           path: |
             sbom.json
             sbom.xml
+
