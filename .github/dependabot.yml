@@ -3,4 +3,4 @@ updates:
   - package-ecosystem: "npm" # For all projects with package.json
     directory: "/" # Location of your package.json file (root directory)
     schedule:
-      interval: "weekly"
+      interval: "daily"
