@@ -212,7 +212,7 @@
     "ruff": "0.9.7",
     "rxandroid": "2.1.1",
     "rxjava": "2.2.21",
-    "rxjs": "7.5.5",
+    "rxjs": "7.8.2",
     "rxpermissions": 0.11,
     "security-crypto": "1.0.0",
     "sentry-android": "7.9.0",
